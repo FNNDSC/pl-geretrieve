@@ -6,3 +6,6 @@ docs/build
 htmlcov
 .docker
 .idea/
+geretrieve/keys
+geretrieve/gehc-bch-sdk.config
+geretrieve/rootCA.pem
