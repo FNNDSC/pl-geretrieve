@@ -1,5 +1,5 @@
 #                                                            _
-# geretrieve ds app
+# Ge retrieve ds app
 #
 # (c) 2016 Fetal-Neonatal Neuroimaging & Developmental Science Center
 #                   Boston Children's Hospital
@@ -40,11 +40,21 @@ class GeRetrieve(ChrisApp):
         """
         Define the CLI arguments accepted by this plugin app.
         """
+        self.add_argument('--prefix', dest='prefix', type=str, default='', optional=True,
+                          help='retrieve directory/file with this prefix in ge')
 
     def run(self, options):
         """
         Define the code to be run by this plugin app.
         """
+        # get GE cloud prefix
+        prefix = options.prefix
+        if not prefix: # path passed through CLI has priority over JSON meta file
+            prefix = self.load_output_meta()['prefix']
+        cmd = 'python {0} -c {1} -p {2} -o {3}'.format('Agent17Download.py',
+                                                       'gehc-bch-sdk.config',
+                                                       prefix, options.outputdir)
+        os.system(cmd)
 
 
 # ENTRYPOINT
