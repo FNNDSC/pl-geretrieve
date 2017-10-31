@@ -18,13 +18,16 @@ Assign an "input" directory to ``/incoming`` and an output directory to ``/outgo
 
 .. code-block:: bash
 
-    docker run -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing   \
-            fnndsc/pl-geretrieve geretrieve.py            \
+    docker run -v /tmp/input:/incoming -v /tmp/output:/outgoing   \
+            local/pl-geretrieve geretrieve.py --prefix demo-upload          \
             /incoming /outgoing
 
-This will ...
+This will retrieve a copy of each file/folder inside the demo-upload "folder" in GE storage
+into the local /outgoing directory. Some metadata files should have previously been read
+from /incoming directory.
 
-Make sure that the host ``$(pwd)/out`` directory is world writable!
+Make sure that the host ``/tmp/input`` directory is world readable and ``/tmp/output``
+directory is world writable!
 
 
 
