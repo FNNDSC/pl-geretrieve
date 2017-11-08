@@ -11,4 +11,4 @@ WORKDIR $APPROOT
 
 RUN pip install -r requirements.txt
 
-CMD ["geretrieve", "--json"]
+CMD ["geretrieve.py", "--json"]
